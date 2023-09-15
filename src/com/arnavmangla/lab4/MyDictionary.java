@@ -10,8 +10,8 @@ class MyDictionary {
 	// Where is the data stored? How is it stored?
 	// Where is Record defined?
 	private final Record[] records; // Why is this private? Would it work if it were public? Why?
-	private int size = 0;
-	private int count = 0;
+	private final int size;
+	private int count;
 	private final Ordering ordering = Ordering.NONE; // enum defined in Ordering.java. What does it do?
 
 	MyDictionary(int initialSize) { // Constructor
@@ -20,9 +20,10 @@ class MyDictionary {
 		count = 0;
 	}
 
-	public Record get(AbstractRecord keyRecord) { // Return the record with the given key
+	public Record get(Record keyRecord) { // Return the record with the given key
+		// TODO: Suggested by Advay B to change the argument from AbstractRecord keyRecord to Record keyRecord
 		for (Record record : records) {
-			if (record.compare(keyRecord)==Comparison.MATCHING)
+			if (record.compare(keyRecord) == Comparison.MATCHING)
         // What happens if there are duplicate keys?
 				return record;
 		}
@@ -40,14 +41,15 @@ class MyDictionary {
 			System.out.println("Size" + size + " not enough for holding an extra element after " + count + " count");
 	}
 
-	public Record remove(AbstractRecord keyRecord) {
+	public Record remove(Record keyRecord) {
+		// TODO: Similar action to previous TODO
     // Remove the record with the given key. What happens if there are duplicate
 		//   keys?
 		Record removed = null;
 		int index = 0;
 		boolean found = false;
 		for (Record record : records) { // How does this for loop work?
-			if (record.compare(keyRecord)==Comparison.MATCHING) {
+			if (record.compare(keyRecord) == Comparison.MATCHING) {
             // Where are we setting the key variable/field for a given record?
 				removed = record;
 				found = true;
